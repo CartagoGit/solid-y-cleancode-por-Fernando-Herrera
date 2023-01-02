@@ -1,17 +1,19 @@
 (() => {
 	// Ejemplo
 	// Archivos a evaluar - files to evaluate
-	const filesToEvaluate = [
+	const filesToEvaluate: { id: number; toDelete: boolean }[] = [
 		{ id: 1, toDelete: false },
 		{ id: 2, toDelete: false },
 		{ id: 3, toDelete: true },
 		{ id: 4, toDelete: false },
 		{ id: 5, toDelete: false },
 		{ id: 7, toDelete: true },
-	] as { id: number; toDelete: boolean }[];
+	];
 
 	// Archivos marcados para borrar - files to delete
-	const filesToDelete: boolean[] = filesToEvaluate.map((file) => file.toDelete);
+	const filesToDelete: boolean[] = filesToEvaluate.map(
+		(file) => file.toDelete
+	);
 
 	// MAL
 	class AbstractUser {}
@@ -46,3 +48,6 @@
 	// cantidad máxima de clases por estudiante - max classes per student
 	const maxClassesPerStudent: number = 6;
 })();
+
+
+
