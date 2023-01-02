@@ -39,4 +39,41 @@
 		console.log("Crear actor");
 		return true;
 	}
+
+	// Continuacion
+
+	//Ejemplo mio complicandome
+	const getPayAmountCartago = ({
+		isDead = false,
+		isSeparated = true,
+		isRetired = false,
+	}: {
+		[key: string]: boolean;
+	}): number => {
+		const resultsPayAmount: { [key: string]: number } = {
+			isDead: 1500,
+			isSeparated: 2500,
+			isRetired: 3000,
+			isNormal: 4000,
+		};
+
+		const [state] = Object.entries({ isDead, isSeparated, isRetired }).find(
+			([_nameState, isState]) => isState
+		) || ["isNormal"];
+
+		return resultsPayAmount[state];
+	};
+
+	// Ejemplo 1 de fernando
+	const getPayAmountFernando01 = ({
+		isDead = false,
+		isSeparated = true,
+		isRetired = false,
+	}: {
+		[key: string]: boolean;
+	}): number => {
+		if (isDead) return 1500;
+		if (isSeparated) return 2500;
+		return isRetired ? 3000 : 4000;
+	};
 })();
