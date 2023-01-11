@@ -1,4 +1,6 @@
 (() => {
+	console.log('---------------- Ejercicio 01 ----------------');
+
 	// Ejemplo
 	// Archivos a evaluar - files to evaluate
 	const filesToEvaluate: { id: number; toDelete: boolean }[] = [

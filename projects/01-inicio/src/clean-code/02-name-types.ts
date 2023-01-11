@@ -1,4 +1,6 @@
 (() => {
+	console.log('---------------- Ejercicio 02 ----------------');
+	
 	// arreglo de temperaturas celsius
 	const temperaturesCelsius: number[] = [33.6, 12.34];
 

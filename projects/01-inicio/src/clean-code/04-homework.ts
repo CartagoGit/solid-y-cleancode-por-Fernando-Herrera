@@ -1,79 +1,77 @@
 (() => {
+	console.log('---------------- Ejercicio 04 ----------------');
+	// Resolver sin la triple condicional dentro del if
+	// includes? arrays?
+	function isRedFruit(fruit: string): boolean {
+		const fruits = ["manzana", "cereza", "ciruela"];
+		return fruits.includes(fruit);
+	}
 
+	// Simplificar esta función
+	// switch? Object literal? validar posibles colores
+	type FruitColor = "red" | "yellow" | "purple";
+	function getFruitsByColor(color: FruitColor): string[] {
+		const fruitsByColor = {
+			red: ["manzana", "fresas"],
+			yellow: ["piña", "banana"],
+			purple: ["moras", "uvas"],
+		};
 
-    // Resolver sin la triple condicional dentro del if
-    // includes? arrays?
-    function isRedFruit( fruit: string ): boolean {
-        
-        if ( fruit === 'manzana' || fruit === 'cereza' || fruit === 'ciruela' ) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+		if (!Object.keys(fruitsByColor).includes(color)) {
+			const messageError =
+				"the color must be: " + getListDisjunction(fruitsByColor);
+			console.log(
+				"🚀 <~> file: 04-homework.ts:21 <~> getFruitsByColor <~> messageError",
+				messageError
+			);
+			return [messageError]
 
-    // Simplificar esta función
-    // switch? Object literal? validar posibles colores
-    function getFruitsByColor( color: string ): string[] {
+			// throw Error(messageError);
+		}
 
-        if ( color === 'red' ) {
-            return ['manzana','fresa'];
-        } else if ( color === 'yellow') {
-            return ['piña','banana'];
-        } else if ( color === 'purple') {
-            return ['moras','uvas']
-        } else {
-            throw Error('the color must be: red, yellow, purple');
-        }
-    }
+		return fruitsByColor[color];
+		// if (!!fruitsByColor[color]) return fruitsByColor[color];
+		// throw Error("the color must be: red, yellow, purple");
+	}
 
-    // Simplificar esta función
-    let isFirstStepWorking  = true;
-    let isSecondStepWorking = true;
-    let isThirdStepWorking  = true;
-    let isFourthStepWorking = true;
+	// Funcion auxiliar para formatear la lista
+	const getListDisjunction = (
+		obj: object | string[],
+		options: { lang: string; type: Intl.ListFormatType } = {
+			lang: "en",
+			type: "disjunction",
+		}
+	): string => {
+		return new Intl.ListFormat(options.lang, {
+			type: options.type,
+		}).format(Array.isArray(obj) ? obj : Object.keys(obj));
+	};
 
-    function workingSteps() {
-        if( isFirstStepWorking === true ) {
-            if( isSecondStepWorking === true ) {
-                if( isThirdStepWorking === true ) {
-                    if( isFourthStepWorking === true ) {
-                        return 'Working properly!';
-                    }
-                    else {
-                        return 'Fourth step broken.';
-                    }
-                }
-                else {
-                    return 'Third step broken.';
-                }
-            }
-            else {
-                return 'Second step broken.';
-            }
-        }
-        else {
-            return 'First step broken.';
-        }
-    }
+	// Simplificar esta función
+	let isFirstStepWorking = true;
+	let isSecondStepWorking = false;
+	let isThirdStepWorking = true;
+	let isFourthStepWorking = true;
 
+	function workingSteps() {
+		if (!isFirstStepWorking) return "First step broken.";
+		else if (!isSecondStepWorking) return "Second step broken.";
+		else if (!isThirdStepWorking) return "Third step broken.";
+		return isFourthStepWorking
+			? "Working properly!"
+			: "Fourth step broken.";
+	}
 
-    // isRedFruit
-    console.log({ isRedFruit: isRedFruit('cereza'), fruit: 'cereza' }); // true
-    console.log({ isRedFruit: isRedFruit('piña'), fruit: 'piña' }); // true
+	// isRedFruit
+	console.log({ isRedFruit: isRedFruit("cereza"), fruit: "cereza" }); // true
+	console.log({ isRedFruit: isRedFruit("piña"), fruit: "piña" }); // true
 
-    //getFruitsByColor
-    console.log({ redFruits: getFruitsByColor('red') }); // ['manzana', 'fresa']
-    console.log({ yellowFruits: getFruitsByColor('yellow') }); // ['piña', 'banana']
-    console.log({ purpleFruits: getFruitsByColor('purple') }); // ['moras', 'uvas']
-    // console.log({ pinkFruits: getFruitsByColor('pink') }); // Error: the color must be: red, yellow, purple
+	//getFruitsByColor
+	console.log({ redFruits: getFruitsByColor("red") }); // ['manzana', 'fresa']
+	console.log({ yellowFruits: getFruitsByColor("yellow") }); // ['piña', 'banana']
+	console.log({ purpleFruits: getFruitsByColor("purple") }); // ['moras', 'uvas']
+	console.log({ pinkFruits: getFruitsByColor("pink" as FruitColor) }); // Error: the color must be: red, yellow, purple
 
-    // workingSteps
-    console.log({ workingSteps: workingSteps() }); // Cambiar los valores de la línea 31 y esperar los resultados
-
-
+	// workingSteps
+	console.log({ workingSteps: workingSteps() }); // Cambiar los valores de la línea 31 y esperar los resultados
 })();
-
-
-
-

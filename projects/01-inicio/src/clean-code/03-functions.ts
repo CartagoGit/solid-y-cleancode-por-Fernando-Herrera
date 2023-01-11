@@ -1,4 +1,5 @@
 (() => {
+	console.log('---------------- Ejercicio 03 ----------------');
 	// función para obtener información de una película por Id
 	function getInfoMovie(movieId: string): object {
 		console.log({ movieId });
