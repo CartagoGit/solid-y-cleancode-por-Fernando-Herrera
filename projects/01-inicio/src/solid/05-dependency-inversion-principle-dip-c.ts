@@ -1,22 +1,43 @@
+import localPosts from "../data/05-local-database.json";
+import { Post } from "./05-dependency-inversion-principle-dip-b";
 
-export class LocalDataBaseService {
+export abstract class PostProvider {
+	abstract getPosts(): Promise<Post[]>;
+}
 
-    constructor() {}
+export class LocalDataBaseService implements PostProvider {
+	async getFakePosts() {
+		return [
+			{
+				userId: 1,
+				id: 1,
+				title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+				body: "quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto",
+			},
+			{
+				userId: 1,
+				id: 2,
+				title: "qui est esse",
+				body: "est rerum tempore vitae sequi sint nihil reprehenderit dolor beatae ea dolores neque fugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis qui aperiam non debitis possimus qui neque nisi nulla",
+			},
+		];
+	}
 
-    async getFakePosts() {
-        return [
-            {
-                'userId': 1,
-                'id': 1,
-                'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-                'body': 'quia et suscipit suscipit recusandae consequuntur expedita et cum reprehenderit molestiae ut ut quas totam nostrum rerum est autem sunt rem eveniet architecto'
-            },
-            {
-                'userId': 1,
-                'id': 2,
-                'title': 'qui est esse',
-                'body': 'est rerum tempore vitae sequi sint nihil reprehenderit dolor beatae ea dolores neque fugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis qui aperiam non debitis possimus qui neque nisi nulla'
-            }]
-    }
+	async getPosts() {
+		return this.getFakePosts();
+	}
+}
 
+export class JsonDataBaseService implements PostProvider {
+	async getPosts() {
+		return localPosts;
+	}
+}
+
+export class WebApiPostService implements PostProvider {
+	async getPosts(): Promise<Post[]> {
+		return await (
+			await fetch("https://jsonplaceholder.typicode.com/posts")
+		).json();
+	}
 }
