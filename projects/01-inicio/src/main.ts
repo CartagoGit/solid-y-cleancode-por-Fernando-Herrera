@@ -9,7 +9,12 @@ import "./style.css";
 // import "./clean-code/06-classes-a";
 // import "./clean-code/06-classes-b";
 // import "./clean-code/06-classes-c";
-import "./clean-code/07-tarea";
+// import "./clean-code/07-tarea";
+import "./solid/01-single-responsibility-principle-srp";
+import "./solid/02-open-close-principle-ocp";
+import "./solid/03-liskov-substitution-principle-lsp";
+import "./solid/04-interface-segregation-principle-isp";
+import "./solid/05-dependency-inversion-principle-dip";
 
 const app = document.querySelector<HTMLDivElement>("#app")!;
 
